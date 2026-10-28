@@ -18,8 +18,9 @@ export default function Hero() {
 
       {/* Content */}
       <div className="mx-auto w-full max-w-7xl px-6 pb-20 pt-41">
-        <p className="rise px-2 flex items-center font-black gap-4 text-sm  uppercase tracking-[0.3em] text-brand">
-       <span className=" h-2 w-10 bg-brand" />
+        <p className="rise px-2 flex items-center font-black gap-4 text-sm  uppercase tracking-[0.3em] text-white
+        ">
+       
          RELIABE EQUIPMENT FOR HIRE
         </p>
 
@@ -27,7 +28,7 @@ export default function Hero() {
           className="rise mt-2 max-w-3xl font-display text-6xl font-bold uppercase leading-[0.95] sm:text-6xl lg:text-8xl"
           style={{ animationDelay: "120ms" }}
         >
-          HEAVY POWER PRESTIGE {" "} <br />
+          HEAVY POWER <span className="text-brand"> PRESTIGE {" "} </span>
           <span className="text-brand"> SERVICE.</span>
         </h1>
 
@@ -43,28 +44,19 @@ export default function Hero() {
           className="rise mt-10 flex flex-wrap gap-4"
           style={{ animationDelay: "360ms" }}
 >
-  <Link
+<Link
   href="/contact"
-  className="group mt-[-20] inline-flex flex-col gap-4  text-sm font-bold uppercase tracking-[0.25em] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-8 focus-visible:outline-brand"
+  className="group relative inline-flex items-center gap-4 px-2  overflow-hidden rounded-md border-2 py-4 pl-15 pr-15 text-sm font-bold uppercase tracking-[0.1em] text-white shadow-lg shadow-[#02163e]/20 transition-colors duration-300  focus-visible:outline-2 focus-visible:outline-offset-4 "
 >
-  Get a Quote
-  <span className="flex items-center text-brand">
-    <span className="block  h-0.5 w-42 bg-current transition-all duration-500 ease-out group-hover:w-48" />
-    <svg
-      width="20"
-      height="10"
-      viewBox="0 0 10 16"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      className="-ml-2"
-      aria-hidden="true"
-    >
-      <path d="M2 2l6 6-6 6" />
-    </svg>
-  </span>
+  {/* Orange fill that sweeps in on hover */}
+  <span
+    aria-hidden="true"
+    className="absolute inset-0 origin-left scale-x-5  transition-transform duration-500 ease-out group-hover:scale-x-100"
+  />
+
+  <span className="relative font-black">Get a quote</span>
+
+ 
 </Link>
         </div>
       </div>

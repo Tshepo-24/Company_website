@@ -17,10 +17,10 @@ export default function NavLink({
     <Link
       href={href}
       aria-current={active ? "page" : undefined}
-      className={`relative flex h-14 items-center text-[15px] font-black uppercase tracking-[0.15em] transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:bg-brand after:transition-transform after:duration-300 ${
+      className={`relative flex items-center text-[13px] font-semibold uppercase tracking-[0.15em] transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:bg-brand after:transition-transform after:duration-300 ${
         active
-          ? "text-white after:scale-x-100"
-          : "text-neutral-300 after:scale-x-0 hover:text-white hover:after:scale-x-100"
+          ? "text-navy after:scale-x-100"
+          : "text-navy/80 after:scale-x-0 hover:text-navy hover:after:scale-x-100"
       }`}
     >
       {label}

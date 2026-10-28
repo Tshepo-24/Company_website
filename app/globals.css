@@ -2,14 +2,15 @@
 
 @theme inline {
   --color-brand: #ff8c00;
-  --color-ink: #0f172a;
+  
   --color-sand: #f1f5f9;
   --font-sans: var(--font-barlow);
   --font-display: var(--font-barlow-condensed);
+  --color-navy: #02163e;
 }
 
 body {
-  background: #0f172a;/*var(--color-ink);*/
+  background: #a9b0b0;/*var(--color-ink);*/
   color: #fff;
 }
 

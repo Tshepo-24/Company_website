@@ -1,51 +1,6 @@
-{/*import Image from "next/image";
-import { fleet } from "@/lib/fleet";
-
-// When you have a wide photo, put it in public/ and set it here, for example "/intro.jpg"
-const introImage: string | undefined = "/about.jpg";
-
-
-export default function Intro() {
-  return (
-    <section
-      id="about"
-      className="relative z-10 -mt-16 scroll-mt-40 rounded-t-[2.5rem] bg-sand text-neutral-900"
-    >
-      <div className="mx-auto max-w-7xl px-6 py-10 lg:py-24">
-       {/* <p className="flex items-center px-1 font-black gap-4   uppercase tracking-[0.1em] text-neutral-1000">
-          <span className=" h-2 w-10 bg-brand" />
-           PLANT HIRE YOU CAN RELY ON
-        </p>
-
-        <div className="mt-4 grid gap-8 text-xl leading-relaxed font-black text-neutral-700  md:gap-16">
-          <p>
-           When a job is waiting ,
-            you need a machine that starts  and a supplier who picks up the phone . <br />
-            That is what we aim for on every hire 
-          </p>
-          
-        </div>
-
-        <div className="relative mt-14 aspect-[16/9] overflow-hidden rounded-2xl bg-neutral-800 lg:aspect-[21/9]">
-          {introImage && (
-            <Image
-              src={introImage}
-              alt="LJ Plant Hire equipment on site"
-              fill
-              sizes="(min-width: 1280px) 1152px, 100vw"
-              className="object-cover"
-            />
-          )}
-        </div>
-
-      
-      </div>
-    </section>
-  );
-}*/}
 import Image from "next/image";
 
-// When you have a wide photo, put it in public/ and set it here, for example "/intro.jpg"
+// Photo on the left half (put the file in public/)
 const introImage: string | undefined = "/about.jpg";
 
 const glance = [
@@ -59,55 +14,62 @@ export default function Intro() {
   return (
     <section
       id="about"
-      className="relative z-10 -mt-16 scroll-mt-40 rounded-t-[3.5rem]  bg-[#02163e] text-white"
+      className="grid scroll-mt-40 bg-[#02163e] text-white lg:grid-cols-2"
     >
-      <div className="mx-auto max-w-7xl px-6 py-10 lg:py-24">
-        <p className="flex items-center px-1 font-black gap-4   uppercase tracking-[0.1em] text-neutral-1000">
-          <span className=" h-2 w-10 bg-brand" />
-           PLANT HIRE YOU CAN RELY ON
-        </p>
-        {/* Headline + At a glance */}
-        <div className="grid mt-3 items-center gap-10 lg:grid-cols-[1.5fr_1.2fr] lg:gap-20">
+      {/* Photo */}
+      <div className="relative min-h-[22rem] bg-slate-800 lg:min-h-[44rem]">
+        {introImage && (
+          <Image
+            src={introImage}
+            alt="LJ Plant Hire equipment on site"
+            fill
+            sizes="(min-width: 1024px) 50vw, 100vw"
+            className="object-cover object-[60%_50%]"
+          />
+        )}
+      </div>
 
-          <h2 className="text-5xl font-bold  uppercase leading-[1.1] tracking-tight sm:text-4xl lg:text-4xl">
-            When a job is waiting, a machine that does not start costs you
-            time and money. So we keep ours maintained and{" "}
-          ready to work.
+      {/* Text */}
+      <div className="flex items-center px-6 py-16 sm:px-12 lg:px-16 lg:py-24 xl:px-24">
+        <div className="max-w-xl">
+          <p className="flex items-center gap-5 text-xs font-medium uppercase tracking-[0.35em] text-slate-400">
+            About LJ Plant Hire
+            <span className="h-px w-12 bg-slate-500" />
+          </p>
+
+          <h2 className="mt-5 font-display text-5xl font-bold uppercase leading-[0.95] text-brand sm:text-6xl lg:text-7xl">
+            Plant hire you can rely on
           </h2>
 
-          <div >
-            
+          <span className="mt-8 block h-1 w-12 bg-brand" />
 
-            <dl className="mt-0 space-y-5">
-              {glance.map((item) => (
-                <div key={item.label} className="flex items-baseline gap-4">
-                  <dt className="text-xs font-semibold uppercase tracking-[0.12em] text-slate-400">
-                    {item.label}
-                  </dt>
-                  <span
-                    aria-hidden
-                    className="flex-1 border-b border-dotted border-slate-600"
-                  />
-                  <dd className="text-right text-sm font-bold sm:text-base">
-                    {item.value}
-                  </dd>
-                </div>
-              ))}
-            </dl>
+          <div className="mt-8 space-y-5 text-lg leading-relaxed text-slate-300">
+            <p>
+              When a job is waiting, a machine that does not start costs you
+              time and money. So we keep ours maintained and ready to work.
+            </p>
+            <p>
+              Every machine has its rate on its own page. Pick one, check the
+              rate, and call or WhatsApp us when you are ready.
+            </p>
           </div>
-        </div>
 
-        {/* Image */}
-        <div className="relative mt-14 aspect-[16/9] overflow-hidden rounded-2xl bg-neutral-800 lg:aspect-[21/9]">
-          {introImage && (
-            <Image
-              src={introImage}
-              alt="LJ Plant Hire equipment on site"
-              fill
-              sizes="(min-width: 1280px) 1152px, 100vw"
-              className="object-cover"
-            />
-          )}
+          <dl className="mt-10 space-y-4 border-t border-white/10 pt-8">
+            {glance.map((item) => (
+              <div key={item.label} className="flex items-baseline gap-4">
+                <dt className="text-xs font-semibold uppercase tracking-[0.15em] text-slate-400">
+                  {item.label}
+                </dt>
+                <span
+                  aria-hidden="true"
+                  className="flex-1 border-b border-dotted border-slate-600"
+                />
+                <dd className="text-right text-sm font-bold sm:text-base">
+                  {item.value}
+                </dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
     </section>

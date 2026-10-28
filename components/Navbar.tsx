@@ -1,19 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
+import { fleet, machineHref } from "@/lib/fleet";
 import { site } from "@/lib/site";
 import NavLink from "./NavLink";
 import MobileMenu from "./MobileMenu";
 import ScrollWatcher from "./ScrollWatcher";
 
-const links = [
-  { label: "TLB's", href: "/tlb" },
-  { label: "Excavators", href: "/excavators" },
-  { label: "Trucks", href: "/trucks" },
-  { label: "Motor Grader", href: "/motor-grader" },
-  { label: "Diesel Bowser", href: "/diesel-bowser" },
-  { label: "Water Tanker", href: "/water-tanker" },
-  { label: "Contact Us", href: "/contact" },
-];
+const categories = ["Earthmoving", "Haulage", "Support"] as const;
+
+const groups = categories.map((category) => ({
+  category,
+  items: fleet
+    .filter((m) => m.category === category)
+    .map((m) => ({ label: m.name, href: machineHref(m) })),
+}));
 
 export default function Navbar() {
   return (
@@ -23,79 +23,160 @@ export default function Navbar() {
     >
       <ScrollWatcher />
 
-      <div className="relative">
-        {/* Layer 1: soft shade that melts into the hero (page top) */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/80 via-black/45 to-transparent transition-opacity duration-300 group-data-[scrolled=true]:opacity-0"
-        />
-        {/* Layer 2: glass bar (after scrolling) */}
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 border-b border-white/10 bg-black/55 opacity-0 backdrop-blur-xl transition-opacity duration-300 group-data-[scrolled=true]:opacity-100"
-        />
+      {/* Top strip (laptops) */}
+      <div className="hidden bg-slate-900 text-slate-200 lg:block">
+        <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-6 text-xs">
+          <p className="uppercase tracking-[0.2em]">{site.tagline}</p>
+          <div className="flex items-center gap-8">
+            <Link
+              href={`tel:${site.phoneHref}`}
+              className="tracking-wider transition-colors hover:text-brand"
+            >
+              {site.phone}
+            </Link>
+            <Link
+              href={`mailto:${site.email}`}
+              className="tracking-wider transition-colors hover:text-brand"
+            >
+              {site.email}
+            </Link>
+          </div>
+        </div>
+      </div>
 
-        <div className="relative mx-auto max-w-7xl px-6">
-          {/* Row 1: logo left, contact right */}
-          <div className="flex h-18 items-center justify-between">
-            <Link href="/" aria-label="LJ Plant Hire home" className="flex items-center">
-              <Image
-                src="/logo.png"
-                alt="LJ Plant Hire logo"
-                width={160}
-                height={160}
-                loading="eager"
-                className="h-50 w-40 mb-10 object-contain"
-              />
+      {/* Main bar */}
+      <div className="relative   text-slate-900 transition-shadow duration-300 group-data-[scrolled=true]:shadow-lg group-data-[scrolled=true]:shadow-slate-900/10">
+        <nav
+          aria-label="Main"
+          className="mx-auto flex h-20 max-w-7xl items-stretch justify-between gap-8 px-6"
+        >
+          {/* Logo */}
+          <Link
+            href="/"
+            aria-label="LJ Plant Hire, home"
+            className="flex shrink-0 items-center gap-3"
+          >
+            <Image
+              src="/logo.png"
+              alt="LJ Plant Hire logo"
+              width={112}
+              height={112}
+              loading="eager"
+              className="h-44 w-34 mb-5 object-contain"
+            />
+            <span className="hidden font-display text-white text-2xl font-bold uppercase leading-none tracking-wide sm:block">
+              LJ Plant Hire
+            </span>
+          </Link>
+
+          {/* Links (laptops) */}
+          <ul className="hidden items-stretch gap-10 lg:flex">
+            {/* Equipment with the menu */}
+            <li className="group/mega flex">
+              <Link
+                href="/equipment"
+                className="relative flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.15em] text-white transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-brand after:transition-transform after:duration-300 group-focus-within/mega:text-navy group-focus-within/mega:after:scale-x-100 group-hover/mega:text-navy group-hover/mega:after:scale-x-100"
+              >
+                Equipment
+                <svg
+                  width="10"
+                  height="10"
+                  viewBox="0 0 10 10"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                  className="transition-transform duration-300 group-hover/mega:rotate-180"
+                >
+                  <path d="m1 3 4 4 4-4" />
+                </svg>
+              </Link>
+
+              {/* Always in the page HTML, only hidden by CSS */}
+              <div className="invisible absolute inset-x-0 top-full translate-y-1 border-t border-slate-200 bg-white opacity-0 shadow-2xl shadow-slate-900/15 transition-[opacity,transform,visibility] duration-200 group-focus-within/mega:visible group-focus-within/mega:translate-y-0 group-focus-within/mega:opacity-100 group-hover/mega:visible group-hover/mega:translate-y-0 group-hover/mega:opacity-100">
+                <div className="mx-auto grid max-w-7xl gap-10 px-6 py-10 lg:grid-cols-[1fr_2.2fr_1fr]">
+                  <div className="gap-30">
+                    
+                    <p className=" text-sm leading-relaxed text-slate-900">
+                      {fleet.length} machines for construction and mining work.
+                    </p>
+                    <Link
+                      href="/equipment"
+                      className="mt-2 inline-block text-sm font-semibold uppercase tracking-widest underline decoration-brand decoration-2 underline-offset-4 transition-colors hover:decoration-navy"
+                    >
+                      View all equipment
+                    </Link>
+                  </div>
+
+                  <div className="grid gap-30 sm:grid-cols-3">
+                    {groups.map((g) => (
+                      <div key={g.category}>
+                        <p className="border-b border-slate-200 pb-3 text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">
+                          {g.category}
+                        </p>
+                        <ul className="mt-3 space-y-1">
+                          {g.items.map((it) => (
+                            <li key={it.href}>
+                              <Link
+                                href={it.href}
+                                className="group/item -mx-3 flex items-center justify-between rounded-lg px-5 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-navy"
+                              >
+                                {it.label}
+                                <span
+                                  aria-hidden="true"
+                                  className="text-brand opacity-0 transition-opacity group-hover/item:opacity-100"
+                                >
+                                  →
+                                </span>
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+
+                 
+                </div>
+              </div>
+            </li>
+
+            <li className="flex text-white ">
+             <NavLink href="/about" label="About" />.
+            </li>
+            <li className="flex text-white">
+              <NavLink href="/contact" label="Contact" />
+            </li>
+          </ul>
+
+          {/* Right side */}
+          <div className="flex items-center">
+            <Link
+              href="/contact"
+              className="group/cta hidden items-center gap-3 rounded-md border-2 px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] text-white transition-colors   lg:flex"
+            >
+              Get a quote
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+                className="transition-transform duration-300 group-hover/cta:translate-x-1"
+              >
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
             </Link>
 
-            <div className="flex items-center gap-8">
-              <Link
-                href={`tel:${site.phoneHref}`}
-                className="hidden items-center gap-2 text-md font-black tracking-[0.10em] text-neutral-200 transition-colors hover:text-brand lg:flex"
-              >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z" />
-                </svg>
-                {site.phone}
-              </Link>
-
-              <Link
-                href={`mailto:${site.email}`}
-                className="hidden items-center gap-2 text-md font-black tracking-[0.15em] text-neutral-200 transition-colors hover:text-brand xl:flex"
-              >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-                  <rect x="2" y="4" width="20" height="16" rx="2" />
-                  <path d="m22 7-10 6L2 7" />
-                </svg>
-                {site.email}
-              </Link>
-
-              <Link
-                href="/contact"
-                className="group/cta hidden items-center gap-4 rounded-full border-2 border-white/25 bg-white/5 py-2 pl-6 pr-2 text-xs font-black uppercase tracking-[0.2em] transition-colors hover:border-brand lg:flex"
-              >
-                Contact Us
-                <span className="grid h-8 w-8 place-items-center rounded-full bg-brand text-black transition-colors group-hover/cta:bg-white">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                    <path d="M5 12h14M13 6l6 6-6 6" />
-                  </svg>
-                </span>
-              </Link>
-
-              <MobileMenu links={links} phoneHref={site.phoneHref} />
-            </div>
+            <MobileMenu groups={groups} phoneHref={site.phoneHref} />
           </div>
-
-          {/* Row 2: links across the full width (desktop) */}
-          <ul className="hidden items-center justify-between border-t-2 border-white/10 lg:flex">
-            {links.map((item) => (
-              <li key={item.href}>
-                <NavLink href={item.href} label={item.label} />
-              </li>
-            ))}
-          </ul>
-        </div>
+        </nav>
       </div>
     </header>
   );

@@ -1,43 +1,81 @@
 export type Machine = {
-  slug: string; // must match the folder name in app/
+  slug: string; // becomes the web address: /equipment/<slug>
   name: string;
+  category: "Earthmoving" | "Haulage" | "Support";
   summary: string;
-  rate?: string; // for example "R585/hr". Leave it out to show "Call for rate"
-  image?: string; // for example "/fleet/excavators.jpg"
+  rate: number; // in rand
+  unit: "hour" | "day";
+  image: string;
 };
 
 export const fleet: Machine[] = [
   {
-    slug: "excavators",
-    name: "Excavators",
-    summary: "22 ton excavators for digging, loading and trenching.",
-    rate: "R585/hr",
+    slug: "tlb-backhoe-loader",
+    name: "TLB Backhoe Loader",
+    category: "Earthmoving",
+    summary: "Digs, loads and trenches on tight sites.",
+    rate: 395,
+    unit: "hour",
+    image: "/fleet/tlb-backhoe-loader.jpg",
   },
   {
-    slug: "tlb",
-    name: "TLB's",
-    summary: "Backhoe loaders for digging and loading on tight sites.",
-    rate: "R395/hr",
+    slug: "22-ton-excavator",
+    name: "22 Ton Excavator",
+    category: "Earthmoving",
+    summary: "Heavy digging, loading and trenching.",
+    rate: 585,
+    unit: "hour",
+    image: "/fleet/22-ton-excavator.png",
   },
   {
-    slug: "trucks",
-    name: "Trucks",
-    summary: "10 cube tippers and 35 cube side tippers for hauling.",
-    rate: "R355/hr",
+    slug: "10-cube-tipper-truck",
+    name: "10 Cube Tipper Truck",
+    category: "Haulage",
+    summary: "Hauls gravel, sand and rubble.",
+    rate: 355,
+    unit: "hour",
+    image: "/fleet/10-cube-tipper-truck.png",
+  },
+  {
+    slug: "35-cube-side-tipper",
+    name: "35 Cube Power Star Side Tipper",
+    category: "Haulage",
+    summary: "High-capacity hauling for bulk and mining work.",
+    rate: 7500,
+    unit: "day",
+    image: "/fleet/35-cube-side-tipper-truck.png",
   },
   {
     slug: "motor-grader",
     name: "Motor Grader",
-    summary: "Grading and levelling for roads and large sites.",
+    category: "Earthmoving",
+    summary: "Grades and levels roads and large sites.",
+    rate: 685,
+    unit: "hour",
+    image: "/fleet/motor-grader.jpg",
   },
   {
-    slug: "diesel-bowser",
-    name: "Diesel Bowser",
+    slug: "1000l-diesel-bowser",
+    name: "1000L Diesel Bowser",
+    category: "Support",
     summary: "Diesel delivered to your machines on site.",
+    rate: 485,
+    unit: "day",
+    image: "/fleet/1000l-diesel-bowser.png",
   },
   {
-    slug: "water-tanker",
-    name: "Water Tanker",
-    summary: "18 000 litre water tankers for dust control and more.",
+    slug: "18000l-water-tanker",
+    name: "18000L Water Tanker",
+    category: "Support",
+    summary: "Dust control and water supply on site.",
+    rate: 395,
+    unit: "hour",
+    image: "/fleet/18000l-water-tanker.png",
   },
 ];
+
+export const machineHref = (m: Machine) => `/equipment/${m.slug}`;
+
+// 7500 -> "R7 500"
+export const money = (n: number) =>
+  "R" + String(n).replace(/\B(?=(\d{3})+(?!\d))/g, " ");

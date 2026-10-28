@@ -11,5 +11,6 @@ export const site = {
   hours: "Mon – Fri: 07:00 – 17:00",
   phoneAlt: "015 011 1144",
 phoneAltHref: "+27150111144",
+url: "https://www.yourdomain.co.za",
  
 };
