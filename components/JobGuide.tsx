@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { fleet, machineHref, type Machine } from "@/lib/fleet";
 import { site } from "@/lib/site";
+import Image from "next/image";
 
 const jobs = [
   {
@@ -35,18 +36,18 @@ export default function JobGuide() {
     <section
       id="job-guide"
       aria-labelledby="job-guide-heading"
-      className="scroll-mt-24 bg-[#02163e] text-white"
+      className="scroll-mt-24 bg-slate-900 text-white"
     >
       <div className="mx-auto grid max-w-7xl gap-16 px-6 py-20 lg:grid-cols-[1fr_1.5fr] lg:gap-24 lg:py-28">
         {/* Left: stays in view while you scroll the list */}
         <div className="lg:sticky lg:top-32 lg:self-start">
           <p className="flex items-center gap-5 text-xs font-medium uppercase tracking-[0.35em] text-slate-400">
             Job guide
-            <span className="h-px w-12 bg-slate-500" />
+            
           </p>
           <h2
             id="job-guide-heading"
-            className="mt-5 font-display text-5xl font-bold uppercase leading-[0.95] sm:text-6xl"
+            className="mt-3 font-display text-5xl font-bold uppercase leading-[0.95] sm:text-5xl"
           >
             Which machine for{" "}
             which job?
@@ -55,7 +56,16 @@ export default function JobGuide() {
             Not sure what you need? These are the machines that usually work
             together on common jobs. Choose a machine to see its rate.
           </p>
-
+<div className="relative mt-8 aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl">
+  <Image
+    src="/11.jpg"
+    alt="Excavator loading a tipper truck on site"
+    fill
+    sizes="(min-width: 1024px) 28rem, 100vw"
+    className="object-cover"
+  />
+  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
+</div>
         
         </div>
 
@@ -71,7 +81,7 @@ export default function JobGuide() {
                 key={job.title}
                 className="grid gap-4 border-t border-white/15 py-8 last:border-b sm:grid-cols-[4rem_1fr]"
               >
-                <span className="font-display text-2xl font-bold text-brand">
+                <span className="font-display text-2xl font-bold text-slate-400">
                   {String(i + 1).padStart(2, "0")}
                 </span>
                 <div>

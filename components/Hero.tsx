@@ -6,14 +6,14 @@ export default function Hero() {
     <section className="relative isolate flex min-h-svh items-center overflow-hidden">
       {/* Background picture and shading */}
       <Image
-        src="/hero.jpg"
+        src="/hero88.jpg"
         alt="Excavator working on a construction site"
         fill
         priority
         sizes="100vw"
-        className="-z-20 object-cover"
+        className="-z-10 object-cover "
       />
-      <div className="absolute inset-0 -z-10 bg-linear-to-r from-black/85 via-black/55 to-black/10" />
+      <div className="absolute inset-0 -z-10 bg-linear-to-r from-black/90 via-black/65 to-black/90" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-linear-to-t from-ink to-transparent" />
 
       {/* Content */}
@@ -36,7 +36,7 @@ export default function Hero() {
           className="rise px-2 mt-4 max-w-xl text-lg font-black leading-relaxed text-neutral-300"
           style={{ animationDelay: "240ms" }}
         >
-        Reliable construction and mining equipment hire in Tzaeen .
+        Reliable construction and mining equipment hire in Tzaneen .
         Premium machinery , maintained to the highest industrial standards , delivered across South Africa .
         </p>
 

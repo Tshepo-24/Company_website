@@ -66,7 +66,7 @@ export default function Fleet() {
         <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {fleet.map((m, i) => (
             <li key={m.slug} className="flex">
-              <article className="group relative flex flex-1 flex-col rounded-[1.75rem] bg-white p-3 ring-1 ring-slate-900/10 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-900/15 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand">
+              <article className="group relative flex flex-1 flex-col rounded-[1.25rem]  p-3 ring-1 ring-slate-900/10 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-900/15 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand">
                 {/* Picture */}
                 <div
                   className="relative aspect-[4/3] overflow-hidden rounded-2xl"
@@ -87,7 +87,7 @@ export default function Fleet() {
                   <span className="absolute left-4 top-4 font-display text-lg font-bold text-slate-400">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="absolute right-4 top-4 rounded-full bg-slate-900 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">
+                  <span className="absolute right-4 top-4 rounded-md bg-slate-900 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-white">
                     {m.category}
                   </span>
                 </div>
@@ -103,15 +103,15 @@ export default function Fleet() {
                       {m.name}
                     </Link>
                   </h3>
-                  <p className="mt-3 flex-1 text-sm leading-relaxed text-slate-600">
-                    {m.summary}
+                  <p className="flex-1 text-sm leading-relaxed text-slate-600">
+                   
                   </p>
 
                   <ul className=" mt-2 flex flex-wrap gap-2">
                     {inside.map((t) => (
                       <li
                         key={t}
-                        className="rounded-full border border-slate-300 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-slate-600"
+                        className="rounded-md border border-slate-300 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.15em] text-slate-600"
                       >
                         {t}
                       </li>
@@ -122,7 +122,7 @@ export default function Fleet() {
                 {/* Prompt */}
                 <div
                   aria-hidden="true"
-                  className="mt-2 flex items-center justify-between border-3 border-slate-800 rounded-xl bg-[#f4f4f5] py-3 pl-5 pr-3 text-sm font-bold uppercase tracking-widest text-slate-900 transition-colors duration-300 group-hover:bg-slate-900 group-hover:text-white"
+                  className="mt-2 flex items-center justify-between border-3 border-[#dae8e8] rounded-xl bg-[#f4f4f5] py-3 pl-5 pr-3 text-sm font-bold uppercase tracking-widest text-slate-900 transition-colors duration-300 group-hover:bg-white group-hover:text-slate-900"
                 >
                   Get full rates
                   <span className="grid h-9 w-9 place-items-center rounded-full text-black transition-colors duration-300 group-hover:bg-black group-hover:text-white">

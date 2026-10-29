@@ -4,8 +4,8 @@ import { site } from "@/lib/site";
 
 // Both files must exist in public/. The order here is the order they appear.
 const images = [
-  { src: "/why-hire.jpg", alt: "Operator working a machine on a site" },
-  { src: "/about.jpg", alt: "Excavator working on a site" },
+  { src: "/why1.jpg", alt: "Operator working a machine on a site" },
+  { src: "/how.jpg", alt: "Excavator working on a site" },
 ];
 
 const benefits = [
@@ -36,7 +36,7 @@ export default function StoryScroll() {
   const total = String(images.length).padStart(2, "0");
 
   return (
-    <section id="why-hire" className="scroll-mt-40 bg-[#02163e] text-white">
+    <section id="why-hire" className="scroll-mt-40 bg-sand text-slate-900">
       <div className="mx-auto grid max-w-7xl px-6 lg:grid-cols-2 lg:gap-x-20 xl:gap-x-28">
         {/* Step 1: Why hire (grid row 1) */}
         <div className={`${stepClass} lg:col-start-1 lg:row-start-1`}>
@@ -52,17 +52,17 @@ export default function StoryScroll() {
               />
             </div>
 
-            <p className="flex items-center gap-5 text-xs font-medium uppercase tracking-[0.35em] text-slate-400">
+            <p className="flex items-center gap-5 text-xs font-medium uppercase tracking-[0.35em] text-slate-600">
               Why hire
-              <span className="h-px w-12 bg-slate-500" />
+              
             </p>
             <h2 className="mt-5 font-display text-5xl font-bold uppercase leading-[0.95] sm:text-6xl">
               Why hire earthmoving{" "}
-              <span className="text-brand">equipment?</span>
+              equipment?
             </h2>
 
-            <div className="mt-10 border-l-4 border-brand pl-6 sm:pl-8">
-              <p className="text-lg leading-relaxed text-slate-300">
+            <div className="mt-10  sm:pl-8">
+              <p className="text-lg leading-relaxed text-slate-600">
                 Hiring gives you the right machine for the job without the cost
                 of buying, maintaining and storing your own. You pay by the
                 hour or by the day, and the machine goes back when the work is
@@ -71,7 +71,7 @@ export default function StoryScroll() {
               <p className="mt-6 font-semibold">
                 Hiring from LJ Plant Hire lets you:
               </p>
-              <ul className="mt-4 space-y-3 text-slate-300">
+              <ul className="mt-4 space-y-3 text-slate-600">
                 {benefits.map((b) => (
                   <li key={b} className="flex gap-3">
                     <span className="mt-2.5 h-2 w-2 shrink-0 bg-brand" />
@@ -81,16 +81,11 @@ export default function StoryScroll() {
               </ul>
             </div>
 
-            <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-5">
-              <Link
-                href="/contact"
-                className="rounded-sm bg-brand px-7 py-3.5 text-sm font-bold uppercase tracking-widest text-black transition-colors hover:bg-white"
-              >
-                Request a quote
-              </Link>
+            <div className="mt-10  px-9 items-center ">
+              
               <Link
                 href="/equipment"
-                className="group inline-flex items-center gap-3 border-b-2 border-white pb-1 text-sm font-bold uppercase tracking-widest"
+                className="  items-center gap-3 border-b-2 border-brand  pb-1 text-sm font-bold uppercase tracking-widest"
               >
                 Browse our fleet
                 <span
@@ -106,7 +101,7 @@ export default function StoryScroll() {
 
         {/* Step 2: How it works (grid row 2) */}
         <div
-          className={`${stepClass} border-t border-white/10 lg:col-start-1 lg:row-start-2`}
+          className={`${stepClass} border-t  border-white/10 lg:col-start-1 lg:row-start-2`}
         >
           <div className="max-w-xl">
             {/* Photo for phones and tablets only */}
@@ -120,13 +115,13 @@ export default function StoryScroll() {
               />
             </div>
 
-            <p className="flex items-center gap-5 text-xs font-medium uppercase tracking-[0.35em] text-slate-400">
+            <p className="flex items-center gap-5 text-xs font-medium uppercase tracking-[0.35em] text-slate-600">
               How it works
-              <span className="h-px w-12 bg-slate-500" />
+              
             </p>
             <h2 className="mt-5 font-display text-5xl font-bold uppercase leading-[0.95] sm:text-6xl">
               Hiring a machine in{" "}
-              <span className="text-brand">three steps</span>
+            three steps
             </h2>
 
             <ol className="mt-10">
@@ -135,17 +130,17 @@ export default function StoryScroll() {
                   {i < steps.length - 1 && (
                     <span
                       aria-hidden="true"
-                      className="absolute bottom-2 left-5 top-12 w-px bg-white/15"
+                      className="absolute bottom-2 left-5 top-12 w-px "
                     />
                   )}
-                  <span className="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-full bg-brand font-display text-lg font-bold text-black">
+                  <span className="relative z-10 grid h-10 w-10 shrink-0 place-items-center rounded-full bg-slate-300 font-display text-lg font-bold text-black">
                     {i + 1}
                   </span>
                   <div>
                     <h3 className="font-display text-2xl font-bold uppercase">
                       {s.title}
                     </h3>
-                    <p className="mt-2 leading-relaxed text-slate-300">
+                    <p className="mt-2 leading-relaxed text-slate-600">
                       {s.text}
                     </p>
                   </div>
@@ -153,22 +148,8 @@ export default function StoryScroll() {
               ))}
             </ol>
 
-            <div className="mt-10 flex flex-wrap gap-4">
-              <Link
-                href={`tel:${site.phoneHref}`}
-                className="rounded-sm bg-brand px-7 py-3.5 text-sm font-bold uppercase tracking-widest text-black transition-colors hover:bg-white"
-              >
-                Call us
-              </Link>
-              <Link
-                href={`https://wa.me/${site.whatsapp}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-sm border border-white/40 px-7 py-3.5 text-sm font-bold uppercase tracking-widest transition-colors hover:border-brand hover:text-brand"
-              >
-                WhatsApp
-              </Link>
-            </div>
+            
+            
           </div>
         </div>
 

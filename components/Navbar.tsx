@@ -4,7 +4,6 @@ import { fleet, machineHref } from "@/lib/fleet";
 import { site } from "@/lib/site";
 import NavLink from "./NavLink";
 import MobileMenu from "./MobileMenu";
-import ScrollWatcher from "./ScrollWatcher";
 
 const categories = ["Earthmoving", "Haulage", "Support"] as const;
 
@@ -21,8 +20,6 @@ export default function Navbar() {
       id="site-header"
       className="group fixed inset-x-0 top-0 z-50 transition-transform duration-300 data-[hidden=true]:-translate-y-full"
     >
-      <ScrollWatcher />
-
       {/* Top strip (laptops) */}
       <div className="hidden bg-slate-900 text-slate-200 lg:block">
         <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-6 text-xs">
@@ -45,7 +42,7 @@ export default function Navbar() {
       </div>
 
       {/* Main bar */}
-      <div className="relative   text-slate-900 transition-shadow duration-300 group-data-[scrolled=true]:shadow-lg group-data-[scrolled=true]:shadow-slate-900/10">
+      <div className="relative border-b-2  bg-white text-slate-900 transition-shadow duration-300 group-data-[scrolled=true]:shadow-lg group-data-[scrolled=true]:shadow-slate-900/10">
         <nav
           aria-label="Main"
           className="mx-auto flex h-20 max-w-7xl items-stretch justify-between gap-8 px-6"
@@ -62,9 +59,9 @@ export default function Navbar() {
               width={112}
               height={112}
               loading="eager"
-              className="h-44 w-34 mb-5 object-contain"
+              className="h-14 w-auto object-contain"
             />
-            <span className="hidden font-display text-white text-2xl font-bold uppercase leading-none tracking-wide sm:block">
+            <span className="hidden font-display text-2xl font-bold uppercase leading-none tracking-wide sm:block">
               LJ Plant Hire
             </span>
           </Link>
@@ -75,7 +72,8 @@ export default function Navbar() {
             <li className="group/mega flex">
               <Link
                 href="/equipment"
-                className="relative flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.15em] text-white transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-0.5 after:origin-left after:scale-x-0 after:bg-brand after:transition-transform after:duration-300 group-focus-within/mega:text-navy group-focus-within/mega:after:scale-x-100 group-hover/mega:text-navy group-hover/mega:after:scale-x-100"
+                aria-haspopup="true"
+                className="relative flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.15em] text-navy/80 transition-colors after:absolute after:inset-x-0 after:bottom-0 after:h-[3px] after:origin-left after:scale-x-0 after:bg-brand after:transition-transform after:duration-300 group-focus-within/mega:text-navy group-focus-within/mega:after:scale-x-100 group-hover/mega:text-navy group-hover/mega:after:scale-x-100"
               >
                 Equipment
                 <svg
@@ -96,21 +94,25 @@ export default function Navbar() {
 
               {/* Always in the page HTML, only hidden by CSS */}
               <div className="invisible absolute inset-x-0 top-full translate-y-1 border-t border-slate-200 bg-white opacity-0 shadow-2xl shadow-slate-900/15 transition-[opacity,transform,visibility] duration-200 group-focus-within/mega:visible group-focus-within/mega:translate-y-0 group-focus-within/mega:opacity-100 group-hover/mega:visible group-hover/mega:translate-y-0 group-hover/mega:opacity-100">
-                <div className="mx-auto grid max-w-7xl gap-10 px-6 py-10 lg:grid-cols-[1fr_2.2fr_1fr]">
-                  <div className="gap-30">
-                    
-                    <p className=" text-sm leading-relaxed text-slate-900">
+                <div className="mx-auto grid max-w-7xl gap-12 px-6 py-10 lg:grid-cols-[1fr_3fr]">
+                  {/* Left: short intro */}
+                  <div>
+                    <p className="font-display text-2xl font-bold uppercase leading-tight">
+                      Our fleet
+                    </p>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600">
                       {fleet.length} machines for construction and mining work.
                     </p>
                     <Link
                       href="/equipment"
-                      className="mt-2 inline-block text-sm font-semibold uppercase tracking-widest underline decoration-brand decoration-2 underline-offset-4 transition-colors hover:decoration-navy"
+                      className="mt-4 inline-block text-sm font-semibold uppercase tracking-widest underline decoration-brand decoration-2 underline-offset-4 transition-colors hover:decoration-navy"
                     >
                       View all equipment
                     </Link>
                   </div>
 
-                  <div className="grid gap-30 sm:grid-cols-3">
+                  {/* Right: machines by category */}
+                  <div className="grid gap-10 sm:grid-cols-3">
                     {groups.map((g) => (
                       <div key={g.category}>
                         <p className="border-b border-slate-200 pb-3 text-xs font-semibold uppercase tracking-[0.25em] text-slate-500">
@@ -121,7 +123,7 @@ export default function Navbar() {
                             <li key={it.href}>
                               <Link
                                 href={it.href}
-                                className="group/item -mx-3 flex items-center justify-between rounded-lg px-5 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-navy"
+                                className="group/item -mx-3 flex items-center justify-between rounded-lg px-3 py-2.5 text-sm font-medium text-slate-700 transition-colors hover:bg-slate-100 hover:text-navy"
                               >
                                 {it.label}
                                 <span
@@ -137,16 +139,14 @@ export default function Navbar() {
                       </div>
                     ))}
                   </div>
-
-                 
                 </div>
               </div>
             </li>
 
-            <li className="flex text-white ">
-             <NavLink href="/about" label="About" />.
+            <li className="flex">
+              <NavLink href="/about" label="About" />
             </li>
-            <li className="flex text-white">
+            <li className="flex">
               <NavLink href="/contact" label="Contact" />
             </li>
           </ul>
@@ -155,7 +155,7 @@ export default function Navbar() {
           <div className="flex items-center">
             <Link
               href="/contact"
-              className="group/cta hidden items-center gap-3 rounded-md border-2 px-6 py-3 text-xs font-bold uppercase tracking-[0.2em] text-white transition-colors   lg:flex"
+              className="group/cta hidden items-center gap-3   rounded-full bg-slate-50 px-7 py-3 text-xs font-bold uppercase tracking-[0.2em] text-black shadow-xl shadow-slate/10 transition-colors duration-300 hover:bg-navy hover:text-slate-900 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-brand lg:flex"
             >
               Get a quote
               <svg

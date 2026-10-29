@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
-import Intro from "@/components/Intro";
-import FleetPanels from "@/components/FleetPanels";
+
+
 import CtaBand from "@/components/CtaBand";
-import Faq from "@/components/Faq";
-import WhyHire from "@/components/WhyHire";
+
+
    import StoryScroll from "@/components/StoryScroll";
    import Fleet from "@/components/Fleet";
    import JobGuide from "@/components/JobGuide";
+   import MachineMarquee from "@/components/MachineMarquee";
 
 export const metadata: Metadata = {
   title: { absolute: "Plant Hire for Construction & Mining | LJ Plant Hire" },
@@ -19,10 +20,15 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <MachineMarquee />
        <Fleet />
-     
+     <MachineMarquee />
   <JobGuide />
+  <MachineMarquee />
   <StoryScroll  />
+  
+  <CtaBand/>
+  
    
     
       
