@@ -11,6 +11,7 @@ type Props = {
 export default function MobileMenu({ groups, phoneHref }: Props) {
   const [open, setOpen] = useState(false);
   const close = () => setOpen(false);
+  const row = "block border-b border-slate-200 py-4 text-base font-medium";
 
   return (
     <div className="lg:hidden">
@@ -19,7 +20,7 @@ export default function MobileMenu({ groups, phoneHref }: Props) {
         aria-label="Toggle menu"
         aria-expanded={open}
         onClick={() => setOpen(!open)}
-        className="grid h-11 w-11 place-items-center rounded-md border border-slate-300 bg-white text-navy"
+        className="grid h-11 w-11 place-items-center rounded-md border border-slate-300 text-navy"
       >
         <svg
           width="20"
@@ -39,23 +40,18 @@ export default function MobileMenu({ groups, phoneHref }: Props) {
       </button>
 
       {open && (
-        <div className="absolute inset-x-0 top-full max-h-[calc(100svh-5rem)] overflow-y-auto border-t border-slate-200 bg-white shadow-2xl shadow-slate-900/20">
-          <div className="mx-auto max-w-7xl px-6 py-4 text-navy">
-            <Link
-              href="/equipment"
-              onClick={close}
-              className="block border-b border-slate-200 py-4 text-sm font-semibold uppercase tracking-widest"
-            >
+        <div className="absolute inset-x-0 top-full max-h-[calc(100svh-5rem)] overflow-y-auto border-t border-slate-200 bg-white shadow-xl">
+          <div className="wrap py-2 text-navy">
+            <Link href="/equipment" onClick={close} className={row}>
               All equipment
             </Link>
 
             {groups.map((g) => (
               <div key={g.category} className="border-b border-slate-200 py-4">
-                <p className="flex items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-500">
-                  <span className="h-0.5 w-6 bg-brand" />
+                <p className="text-sm font-semibold text-slate-500">
                   {g.category}
                 </p>
-                <ul className="mt-2">
+                <ul className="mt-1">
                   {g.items.map((it) => (
                     <li key={it.href}>
                       <Link
@@ -71,33 +67,18 @@ export default function MobileMenu({ groups, phoneHref }: Props) {
               </div>
             ))}
 
-            <Link
-              href="/#about"
-              onClick={close}
-              className="block border-b border-slate-200 py-4 text-sm font-semibold uppercase tracking-widest"
-            >
+            <Link href="/about" onClick={close} className={row}>
               About
             </Link>
-            <Link
-              href="/contact"
-              onClick={close}
-              className="block border-b border-slate-200 py-4 text-sm font-semibold uppercase tracking-widest"
-            >
+            <Link href="/contact" onClick={close} className={row}>
               Contact
             </Link>
 
             <div className="grid grid-cols-2 gap-3 py-5">
-              <Link
-                href={`tel:${phoneHref}`}
-                className="rounded-md border border-navy py-3 text-center text-sm font-bold uppercase tracking-widest"
-              >
+              <Link href={`tel:${phoneHref}`} className="btn btn-outline">
                 Call
               </Link>
-              <Link
-                href="/contact"
-                onClick={close}
-                className="rounded-md bg-brand py-3 text-center text-sm font-bold uppercase tracking-widest text-black"
-              >
+              <Link href="/contact" onClick={close} className="btn btn-primary">
                 Get a quote
               </Link>
             </div>

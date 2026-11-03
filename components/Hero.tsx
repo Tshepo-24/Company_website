@@ -1,10 +1,10 @@
-import Image from "next/image";
+{/*import Image from "next/image";
 import Link from "next/link";
 
 export default function Hero() {
   return (
     <section className="relative isolate flex min-h-svh items-center overflow-hidden">
-      {/* Background picture and shading */}
+      {/* Background picture and shading 
       <Image
         src="/hero88.jpg"
         alt="Excavator working on a construction site"
@@ -16,7 +16,7 @@ export default function Hero() {
       <div className="absolute inset-0 -z-10 bg-linear-to-r from-black/90 via-black/65 to-black/90" />
       <div className="absolute inset-x-0 bottom-0 -z-10 h-40 bg-linear-to-t from-ink to-transparent" />
 
-      {/* Content */}
+      {/* Content 
       <div className="mx-auto w-full max-w-7xl px-6 pb-20 pt-41">
         <p className="rise px-2 flex items-center font-black gap-4 text-sm  uppercase tracking-[0.3em] text-white
         ">
@@ -48,7 +48,7 @@ export default function Hero() {
   href="/contact"
   className="group relative inline-flex items-center gap-4 px-2  overflow-hidden rounded-md border-2 py-4 pl-15 pr-15 text-sm font-bold uppercase tracking-[0.1em] text-white shadow-lg shadow-[#02163e]/20 transition-colors duration-300  focus-visible:outline-2 focus-visible:outline-offset-4 "
 >
-  {/* Orange fill that sweeps in on hover */}
+  {/* Orange fill that sweeps in on hover 
   <span
     aria-hidden="true"
     className="absolute inset-0 origin-left scale-x-5  transition-transform duration-500 ease-out group-hover:scale-x-100"
@@ -58,6 +58,54 @@ export default function Hero() {
 
  
 </Link>
+        </div>
+      </div>
+    </section>
+  );
+}*/}
+
+import Image from "next/image";
+import Link from "next/link";
+
+export default function Hero() {
+  return (
+    <section className="relative isolate flex min-h-[88svh] items-center overflow-hidden bg-navy text-white">
+      <Image
+        src="/hero1.jpg"
+        alt="Excavator working on a construction site"
+        fill
+        priority
+        sizes="100vw"
+        className="-z-20 object-cover object-[15%_50%]"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10 bg-linear-to-r from-navy/90 via-navy/60 to-navy/20"
+      />
+
+      <div className="wrap w-full pb-24 pt-44">
+        <p className="eyebrow rise">Reliable equipment for hire</p>
+        <h1 className="rise mt-2 max-w-3xl font-display text-6xl font-bold uppercase leading-[0.95] sm:text-6xl lg:text-7xl" style={{ animationDelay: "100ms" }}>
+          Heavy power Prestige service.
+        </h1>
+        <p
+          className="rise mt-5 max-w-xl text-lg leading-relaxed text-slate-200"
+          style={{ animationDelay: "200ms" }}
+        >
+          Reliable construction and mining equipment hire in Tzaneen. Premium
+          machinery, maintained to the highest industrial standards, delivered
+          across South Africa.
+        </p>
+        <div
+          className="rise mt-9 flex flex-wrap gap-4"
+          style={{ animationDelay: "300ms" }}
+        >
+          <Link href="/contact" className="btn btn-primary">
+            Get a quote
+          </Link>
+          <Link href="/equipment" className="btn btn-outline-light">
+            View equipment
+          </Link>
         </div>
       </div>
     </section>

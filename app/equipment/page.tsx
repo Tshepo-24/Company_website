@@ -12,23 +12,18 @@ export const metadata: Metadata = {
 export default function EquipmentPage() {
   return (
     <main>
-      <section className="bg-[#02163e] pb-16 pt-36 text-white">
-        <div className="mx-auto max-w-7xl px-6">
-          <p className="flex items-center gap-4 text-sm font-black uppercase tracking-[0.1em]">
-            <span className="h-2 w-10 bg-brand" />
-            Equipment for hire
-          </p>
-          <h1 className="mt-5 max-w-4xl font-display text-5xl font-bold uppercase leading-[0.95] sm:text-6xl lg:text-7xl">
-            Plant hire equipment for{" "}
-            <span className="text-brand">construction &amp; mining</span>
+      <section className="bg-navy pb-16 pt-36 text-white lg:pb-20 lg:pt-44">
+        <div className="wrap">
+          <p className="eyebrow">Equipment for hire</p>
+          <h1 className="mt-3 max-w-3xl">
+            Plant hire equipment for construction and mining
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-slate-300">
+          <p className="mt-5 max-w-2xl text-lg text-slate-300">
             Choose a machine to see its rates, what it is used for and how to
             hire it.
           </p>
         </div>
       </section>
-
       <Fleet />
       <CtaBand />
     </main>

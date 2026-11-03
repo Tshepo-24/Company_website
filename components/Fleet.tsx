@@ -1,4 +1,4 @@
-import Image from "next/image";
+{/*import Image from "next/image";
 import Link from "next/link";
 import { fleet, machineHref } from "@/lib/fleet";
 import { site } from "@/lib/site";
@@ -46,7 +46,7 @@ export default function Fleet() {
       />
 
       <div className="mx-auto max-w-7xl px-6 py-20 lg:py-28">
-        {/* Heading */}
+        {/* Heading 
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <p className="flex items-center gap-3  font-black uppercase font-display text-4xl leading-none">
@@ -62,17 +62,17 @@ export default function Fleet() {
         
         </div>
 
-        {/* Machines */}
+        {/* Machines 
         <ul className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {fleet.map((m, i) => (
             <li key={m.slug} className="flex">
               <article className="group relative flex flex-1 flex-col rounded-[1.25rem]  p-3 ring-1 ring-slate-900/10 transition duration-300 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-900/15 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand">
-                {/* Picture */}
+                {/* Picture 
                 <div
                   className="relative aspect-[4/3] overflow-hidden rounded-2xl"
                   style={spotlight}
                 >
-                  {/* Soft shadow under the machine */}
+                  {/* Soft shadow under the machine 
                   <span
                     aria-hidden="true"
                     className="absolute bottom-7 left-1/2 h-4 w-3/5 -translate-x-1/2 rounded-full bg-slate-900/25 blur-xl"
@@ -92,10 +92,10 @@ export default function Fleet() {
                   </span>
                 </div>
 
-                {/* Text */}
+                {/* Text 
                 <div className="flex flex-1 flex-col px-3 pb-2 pt-5">
                   <h3 className="font-display text-3xl font-bold uppercase leading-none">
-                    {/* This link covers the whole tile */}
+                    {/* This link covers the whole tile 
                     <Link
                       href={machineHref(m)}
                       className="after:absolute after:inset-0 after:rounded-[1.75rem] focus-visible:outline-none"
@@ -119,7 +119,7 @@ export default function Fleet() {
                   </ul>
                 </div>
 
-                {/* Prompt */}
+                {/* Prompt 
                 <div
                   aria-hidden="true"
                   className="mt-2 flex items-center justify-between border-3 border-[#dae8e8] rounded-xl bg-[#f4f4f5] py-3 pl-5 pr-3 text-sm font-bold uppercase tracking-widest text-slate-900 transition-colors duration-300 group-hover:bg-white group-hover:text-slate-900"
@@ -133,7 +133,7 @@ export default function Fleet() {
             </li>
           ))}
 
-          {/* Help tile */}
+          {/* Help tile 
           <li className="flex">
             <div className="flex flex-1 flex-col justify-between rounded-[1.75rem] bg-[#02163e] p-8 text-white">
               <div>
@@ -162,6 +162,118 @@ export default function Fleet() {
                   Call {site.phone}
                 </Link>
               </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+  );
+}*/}
+import Image from "next/image";
+import Link from "next/link";
+import { fleet, machineHref } from "@/lib/fleet";
+import { site } from "@/lib/site";
+
+// Search engines read this. No prices, because the tiles don't show them.
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: `${site.name} fleet`,
+  itemListElement: fleet.map((m, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    item: {
+      "@type": "Service",
+      name: `${m.name} hire`,
+      serviceType: "Plant hire",
+      description: m.summary,
+      url: `${site.url}${machineHref(m)}`,
+      image: `${site.url}${m.image}`,
+      provider: { "@type": "Organization", name: site.name },
+    },
+  })),
+};
+
+export default function Fleet() {
+  return (
+    <section
+      id="fleet"
+      aria-labelledby="fleet-heading"
+      className="section scroll-mt-24 bg-sand text-slate-900"
+    >
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
+
+      <div className="wrap">
+        <div className="max-w-2xl">
+          <p className="eyebrow">Our fleet</p>
+          <h2 id="fleet-heading" className="mt-3 font-black uppercase">
+            Earthmoving and plant hire equipment
+          </h2>
+          <p className="mt-4 text-lg text-slate-600">
+            Choose a machine to see its rates, what it is used for and answers
+            to common questions.
+          </p>
+        </div>
+
+        <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {fleet.map((m) => (
+            <li key={m.slug}>
+              <article className="group relative flex h-full flex-col overflow-hidden rounded-xl border-5 border-slate-300 bg-white transition-shadow duration-300 hover:shadow-xl hover:shadow-slate-900/10 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-brand">
+                <div className="relative aspect-[4/3] bg-sand">
+                  <Image
+                    src={m.image}
+                    alt={`${m.name} for hire`}
+                    fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-contain p-6 mix-blend-multiply transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+
+                <div className="flex flex-1 flex-col p-6">
+                  <p className="text-sm text-slate-500">{m.category}</p>
+                  <h3 className="mt-1">
+                    {/* This link covers the whole tile */}
+                    <Link
+                      href={machineHref(m)}
+                      className="after:absolute after:inset-0 font-black text-slate-800 sfocus-visible:outline-none"
+                    >
+                      {m.name}
+                    </Link>
+                  </h3>
+                  <p className="mt-2 flex-1 text-[15px] text-slate-600">
+                    {m.summary}
+                  </p>
+                  <p
+                    aria-hidden="true"
+                    className="mt-5 flex items-center gap-2 text-[15px] font-semibold text-slate-800"
+                  >
+                    Get full rates
+                    <span className="transition-transform duration-300 group-hover:translate-x-1">
+                      →
+                    </span>
+                  </p>
+                </div>
+              </article>
+            </li>
+          ))}
+
+          <li>
+            <div className="flex h-full flex-col justify-between rounded-xl bg-navy p-6 text-white">
+              <div>
+                <h3>Not sure which machine?</h3>
+                <p className="mt-3 text-[15px] leading-relaxed text-slate-300">
+                  Tell us about the job and we will recommend the right
+                  equipment.
+                </p>
+              </div>
+              <Link href="/contact" className="btn btn-primary mt-8">
+                Request a quote
+              </Link>
             </div>
           </li>
         </ul>

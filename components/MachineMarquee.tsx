@@ -31,7 +31,7 @@ export default function MachineMarquee() {
   return (
     <section
       aria-label="Machines we hire"
-      className="overflow-hidden bg-[#9aa4a4] py-3"
+      className="overflow-hidden bg-white py-3"
     >
       <style>{`
         @keyframes lj-marquee {

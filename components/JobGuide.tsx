@@ -56,7 +56,7 @@ export default function JobGuide() {
             Not sure what you need? These are the machines that usually work
             together on common jobs. Choose a machine to see its rate.
           </p>
-<div className="relative mt-8 aspect-[4/3] w-full max-w-md overflow-hidden rounded-2xl">
+<div className="relative mt-8 aspect-[4/4] w-full max-w-md overflow-hidden rounded-2xl">
   <Image
     src="/11.jpg"
     alt="Excavator loading a tipper truck on site"

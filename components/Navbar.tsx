@@ -21,7 +21,7 @@ export default function Navbar() {
       className="group fixed inset-x-0 top-0 z-50 transition-transform duration-300 data-[hidden=true]:-translate-y-full"
     >
       {/* Top strip (laptops) */}
-      <div className="hidden bg-slate-900 text-slate-200 lg:block">
+      <div className="hidden bg-[#d5d6d8] text-slate-900 font-black lg:block">
         <div className="mx-auto flex h-10 max-w-7xl items-center justify-between px-6 text-xs">
           <p className="uppercase tracking-[0.2em]">{site.tagline}</p>
           <div className="flex items-center gap-8">
@@ -42,7 +42,7 @@ export default function Navbar() {
       </div>
 
       {/* Main bar */}
-      <div className="relative border-b-2  bg-white text-slate-900 transition-shadow duration-300 group-data-[scrolled=true]:shadow-lg group-data-[scrolled=true]:shadow-slate-900/10">
+      <div className="relative border-b-0  bg-sand text-slate-900 transition-shadow duration-300 group-data-[scrolled=true]:shadow-lg group-data-[scrolled=true]:shadow-slate-900/10">
         <nav
           aria-label="Main"
           className="mx-auto flex h-20 max-w-7xl items-stretch justify-between gap-8 px-6"
