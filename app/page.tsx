@@ -1,13 +1,16 @@
 import type { Metadata } from "next";
 import Hero from "@/components/Hero";
-
-
+import WhyHire from "@/components/WhyHire";
+import HowItWorks from "@/components/HowItWorks";
+import FleetCarousel from "@/components/FleetCarousel";
 import CtaBand from "@/components/CtaBand";
+import FaqSection from "@/components/FaqSection";
+import WhoWeAre from "@/components/WhoWeAre";
 
 
-   import StoryScroll from "@/components/StoryScroll";
-   import Fleet from "@/components/Fleet";
-   import JobGuide from "@/components/JobGuide";
+   
+  
+ 
    import MachineMarquee from "@/components/MachineMarquee";
 
 export const metadata: Metadata = {
@@ -20,14 +23,17 @@ export default function Home() {
   return (
     <main>
       <Hero />
-      <MachineMarquee />
-       <Fleet />
-     <MachineMarquee />
-  <JobGuide />
-  <MachineMarquee />
-  <StoryScroll  />
+      
+       
+       <FleetCarousel />
+    <MachineMarquee />
+ <WhoWeAre />
+
+ <WhyHire />
+<HowItWorks />
   
-  <CtaBand/>
+<FaqSection />
+<CtaBand />
   
    
     

@@ -1,7 +1,7 @@
 import Link from "next/link";
+import SectionHeading from "@/components/SectionHeading";
 import { fleet, machineHref, type Machine } from "@/lib/fleet";
 import { site } from "@/lib/site";
-import Image from "next/image";
 
 const jobs = [
   {
@@ -36,41 +36,38 @@ export default function JobGuide() {
     <section
       id="job-guide"
       aria-labelledby="job-guide-heading"
-      className="scroll-mt-24 bg-slate-900 text-white"
+      className="scroll-mt-32 bg-white py-16 text-slate-900 lg:py-24"
     >
-      <div className="mx-auto grid max-w-7xl gap-16 px-6 py-20 lg:grid-cols-[1fr_1.5fr] lg:gap-24 lg:py-28">
-        {/* Left: stays in view while you scroll the list */}
-        <div className="lg:sticky lg:top-32 lg:self-start">
-          <p className="flex items-center gap-5 text-xs font-medium uppercase tracking-[0.35em] text-slate-400">
-            Job guide
-            
-          </p>
-          <h2
+      <div className="mx-auto max-w-7xl px-6">
+        {/* Header: heading on the left, intro on the right */}
+        <div className="grid gap-6 lg:grid-cols-2 lg:items-end lg:gap-24">
+          <SectionHeading
             id="job-guide-heading"
-            className="mt-3 font-display text-5xl font-bold uppercase leading-[0.95] sm:text-5xl"
-          >
-            Which machine for{" "}
-            which job?
-          </h2>
-          <p className="mt-6 max-w-md text-lg leading-relaxed text-slate-300">
-            Not sure what you need? These are the machines that usually work
-            together on common jobs. Choose a machine to see its rate.
-          </p>
-<div className="relative mt-8 aspect-[4/4] w-full max-w-md overflow-hidden rounded-2xl">
-  <Image
-    src="/11.jpg"
-    alt="Excavator loading a tipper truck on site"
-    fill
-    sizes="(min-width: 1024px) 28rem, 100vw"
-    className="object-cover"
-  />
-  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent" />
-</div>
-        
+            eyebrow="Job guide"
+            title="Which machine for which job?"
+          />
+          <div>
+            <p className="max-w-md text-lg leading-relaxed text-slate-600">
+              Not sure what you need? These are the machines that usually work
+              together on common jobs.
+            </p>
+            <Link
+              href={`tel:${site.phoneHref}`}
+              className="group mt-6 inline-flex items-center gap-3 border-b-2 border-brand pb-1 text-sm font-bold uppercase tracking-widest"
+            >
+              Call {site.phone}
+              <span
+                aria-hidden="true"
+                className="transition-transform duration-300 group-hover:translate-x-1"
+              >
+                →
+              </span>
+            </Link>
+          </div>
         </div>
 
-        {/* Right: the jobs */}
-        <ol>
+        {/* Jobs */}
+        <ol className="mt-12 border-b border-slate-200">
           {jobs.map((job, i) => {
             const machines = job.slugs
               .map((s) => fleet.find((m) => m.slug === s))
@@ -79,32 +76,37 @@ export default function JobGuide() {
             return (
               <li
                 key={job.title}
-                className="grid gap-4 border-t border-white/15 py-8 last:border-b sm:grid-cols-[4rem_1fr]"
+                className="grid gap-4 border-t border-slate-200 py-8 md:grid-cols-[1.1fr_1.3fr_1fr] md:gap-10"
               >
-                <span className="font-display text-2xl font-bold text-slate-400">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <div>
-                  <h3 className="font-display text-3xl font-bold uppercase leading-none">
+                <div className="flex gap-4">
+                  <span className="w-8 shrink-0 pt-1 font-display text-sm font-bold tracking-widest text-brand">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="font-display text-2xl font-bold uppercase leading-tight">
                     {job.title}
                   </h3>
-                  <p className="mt-3 max-w-xl leading-relaxed text-slate-300">
-                    {job.text}
-                  </p>
-                  <ul className="mt-5 flex flex-wrap gap-3">
-                    {machines.map((m) => (
-                      <li key={m.slug}>
-                        <Link
-                          href={machineHref(m)}
-                          className="inline-flex items-center gap-2 rounded-full border border-white/25 px-4 py-2 text-sm font-semibold transition-colors hover:border-brand hover:bg-brand hover:text-black"
-                        >
-                          {m.name}
-                          <span aria-hidden="true">→</span>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
                 </div>
+
+                <p className="leading-relaxed text-slate-600">{job.text}</p>
+
+                <ul className="space-y-2">
+                  {machines.map((m) => (
+                    <li key={m.slug}>
+                      <Link
+                        href={machineHref(m)}
+                        className="group inline-flex items-center gap-2 text-sm font-semibold transition-colors hover:text-brand"
+                      >
+                        {m.name}
+                        <span
+                          aria-hidden="true"
+                          className="transition-transform duration-300 group-hover:translate-x-1"
+                        >
+                          →
+                        </span>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
               </li>
             );
           })}
